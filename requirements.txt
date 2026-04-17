@@ -1,0 +1,48 @@
+# Nexalith Backend — requirements.txt
+# ══════════════════════════════════════
+# Replaces your existing requirements.txt
+
+# ─── Core Django ───
+Django>=4.2,<6.0
+djangorestframework>=3.14
+django-cors-headers>=4.0
+djangorestframework-simplejwt>=5.3
+django-filter>=23.2
+
+# ─── Database ───
+psycopg2-binary>=2.9
+dj-database-url>=2.1.0
+
+# ─── Data processing (Excel import/export) ───
+openpyxl>=3.1
+pandas>=2.0
+
+# ─── Production server ───
+gunicorn>=21.2
+whitenoise>=6.5.0
+
+# ─── Environment variables ───
+python-dotenv>=1.0
+
+# ─── Async task queue (NEW — Critical for scalability) ───
+celery>=5.3
+redis>=5.0
+django-celery-beat>=2.5      # DB-backed scheduler for Celery Beat
+django-celery-results>=2.5   # Store task results in DB
+
+# ─── HIPAA Audit Logging (NEW — Required for US clients) ───
+django-auditlog>=3.0
+
+# ─── API Rate Limiting (NEW — Security hardening) ───
+django-ratelimit>=4.0
+
+# ─── Token Blacklisting for JWT logout (NEW) ───
+# Already included in djangorestframework-simplejwt
+# Just add 'rest_framework_simplejwt.token_blacklist' to INSTALLED_APPS
+
+# ─── MFA / 2FA ───
+django-otp>=1.2
+qrcode>=7.4
+
+# ─── PGCrypto Field Encryption ───
+django-pgcrypto-fields>=2.4.2
