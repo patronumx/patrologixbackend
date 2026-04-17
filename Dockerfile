@@ -47,8 +47,8 @@ EXPOSE 8000
 HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
     CMD curl -f http://localhost:8000/api/health/ || exit 1
 
-# Start gunicorn (runs migrations automatically for Render free tier)
-CMD sh -c "python manage.py migrate && gunicorn medical_billing.wsgi:application \
+# Start gunicorn (runs migrations and celery automatically for Render free tier)
+CMD sh -c "python manage.py migrate && celery -A medical_billing worker --loglevel=info --concurrency=2 & gunicorn medical_billing.wsgi:application \
      --bind 0.0.0.0:8000 \
      --workers 4 \
      --threads 2 \
