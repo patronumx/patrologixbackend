@@ -2,14 +2,16 @@
 # ══════════════════════════════════════════
 # Replaces your existing Dockerfile in nexusbackend/
 
-FROM python:3.12-slim-bookworm
+FROM python:3.12-alpine
 
 # System dependencies
-RUN apt-get update && apt-get install -y \
+RUN apk update && apk add --no-cache \
     gcc \
-    libpq-dev \
+    musl-dev \
+    postgresql-dev \
     curl \
-    && rm -rf /var/lib/apt/lists/*
+    python3-dev \
+    libffi-dev
 
 WORKDIR /app
 
