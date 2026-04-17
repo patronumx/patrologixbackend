@@ -2,7 +2,7 @@
 # ══════════════════════════════════════════
 # Replaces your existing Dockerfile in nexusbackend/
 
-FROM python:3.12-slim
+FROM python:3.12-slim-bookworm
 
 # System dependencies
 RUN apt-get update && apt-get install -y \
